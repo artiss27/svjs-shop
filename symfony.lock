@@ -91,12 +91,6 @@
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
-    "laminas/laminas-eventmanager": {
-        "version": "3.4.0"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.4.0"
-    },
     "monolog/monolog": {
         "version": "2.3.4"
     },
@@ -588,6 +582,9 @@
     },
     "symfony/yaml": {
         "version": "5.4.x-dev"
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.5.0"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
