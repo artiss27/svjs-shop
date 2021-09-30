@@ -58,14 +58,15 @@ class RegistrationController extends AbstractController
                                 ->from(new Address('robot@rc.com', 'Robot'))
                                 ->to($user->getEmail())
                                 ->subject('Please Confirm your Email')
-                                ->htmlTemplate('registration/confirmation_email.html.twig')
+                                ->htmlTemplate('main/email/security/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+            $this->addFlash('success', 'An email has been sent. Please check your inbox to complete registration.');
 
             return $this->redirectToRoute(self::HOMEPAGE_ROUTE);
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('main/security/registeration.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
