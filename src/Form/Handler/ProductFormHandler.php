@@ -6,8 +6,8 @@ use App\Entity\Product;
 use App\Form\DTO\EditProductModel;
 use App\Utils\File\FileSaver;
 use App\Utils\Manager\ProductManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 
 class ProductFormHandler
 {
@@ -33,7 +33,7 @@ class ProductFormHandler
      *
      * @return Product|null
      */
-    public function processEditForm(EditProductModel $editProductModel, Form $form): ?Product
+    public function processEditForm(EditProductModel $editProductModel, FormInterface $form): ?Product
     {
         $product = new Product();
 
