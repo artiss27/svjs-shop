@@ -98,24 +98,23 @@
             </div>
 
             {% if images|length %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="text-gray-600">Current images:</span>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        Current images:
                     </div>
-                </div>
 
-                {% for image in images %}
-                    <div class="row mt-2">
-                        <div class="col-md-5">
-                            <img src="{{ asset('uploads/images/products/' ~ product.id ~ '/' ~ image.filenameMiddle) }}" alt="{{ image.filenameMiddle }}">
+                    {% for image in images %}
+                        <div class="col">
+                            <img src="{{ asset('uploads/images/products/' ~ product.id ~ '/' ~ image.filenameMiddle) }}"
+                                 alt="{{ image.filenameMiddle }}" style="max-width: 400px">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col">
                             <a href="{{ path('admin_product_image_delete', {'id': image.id}) }}" class="btn btn-outline-info">
                                 DELETE
                             </a>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             {% endif %}
 
             <div class="form-group row">

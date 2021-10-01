@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 class AddUserCommand extends Command
@@ -26,7 +26,7 @@ class AddUserCommand extends Command
     private $entityManager;
 
     /**
-     * @var UserPasswordEncoderInterface
+     * @var UserPasswordHasherInterface
      */
     private $encoder;
 
@@ -35,7 +35,7 @@ class AddUserCommand extends Command
      */
     private $userRepository;
 
-    public function __construct(string $name = null, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder, UserRepository $userRepository)
+    public function __construct(string $name = null, EntityManagerInterface $entityManager, UserPasswordHasherInterface $encoder, UserRepository $userRepository)
     {
         parent::__construct($name);
         $this->entityManager = $entityManager;
@@ -69,7 +69,20 @@ class AddUserCommand extends Command
         ]);
 
         if (!$email) {
-            $email = $io->ask('Email');
+//            $email = $io->ask('Email');
+            $email = '';
+            $isValidEmail = false;
+
+            while (!$isValidEmail) {
+                $email = $io->ask('Email');
+
+                $existingUser = $this->userRepository->findOneBy(['email' => $email]);
+                if (!$existingUser) {
+                    $isValidEmail = true;
+                } else {
+                    $output->writeln('User is found! Enter another email.');
+                }
+            }
         }
 
         if (!$password) {
@@ -123,7 +136,7 @@ class AddUserCommand extends Command
         $user->setEmail($email);
         $user->setRoles([$role]);
 
-        $encodedPassword = $this->encoder->encodePassword($user, $password);
+        $encodedPassword = $this->encoder->hashPassword($user, $password);
         $user->setPassword($encodedPassword);
 
         $user->setIsVerified(true);

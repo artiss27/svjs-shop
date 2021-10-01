@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
@@ -61,7 +61,7 @@ class EditProductFormType extends AbstractType
             ->add('newImage', FileType::class, [
                 'label'    => 'Choose new image',
                 'required' => false,
-                'mapped'   => false,
+                'mapped'   => true,
                 'attr'     => [
                     'class' => 'form-control-file',
                 ],

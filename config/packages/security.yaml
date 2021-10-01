@@ -22,7 +22,7 @@ security:
             pattern: ^/admin
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\Admin\LoginFormAuthenticator
+            custom_authenticator: App\Security\Authentificator\Admin\LoginFormAuthenticator
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 684800
@@ -33,7 +33,7 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\LoginFormAuthenticator
+            custom_authenticator: App\Security\Authentificator\Main\LoginFormAuthenticator
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds

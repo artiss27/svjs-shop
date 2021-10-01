@@ -68,7 +68,7 @@ class Product
 
     /**
      * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(type="string", length=128, nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=false, unique=true)
      */
     private $slug;
 
@@ -91,7 +91,7 @@ class Product
         return $this->id;
     }
 
-    public function getUid(): ?string
+    public function getUuid(): ?string
     {
         return $this->uuid;
     }
@@ -103,7 +103,7 @@ class Product
 
     public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = ucfirst($title);
 
         return $this;
     }
