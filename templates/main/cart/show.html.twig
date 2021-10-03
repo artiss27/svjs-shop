@@ -1,0 +1,40 @@
+{% extends 'main/base.html.twig' %}
+
+{% block title %}Your Cart - RankedChoice{% endblock %}
+{% block page_keywords %}Jeans, Ranked Choice Homepage, Jackets{% endblock %}
+{% block page_description %}User's cart on RankedChoice shop!{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('appMainCartShow') }}
+{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-3 text-center">
+                    <div class="page-details mt-4">
+                        <h1 class="h4 font-weight-normal title-gradient-1">Your cart:</h1>
+                        <div id="app"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        {#if (typeof window.staticStore === 'undefined') {#}
+        {#    window.staticStore = {};#}
+        {#}#}
+
+        {#window.staticStore.urlCart = "{{ path('api_carts_get_collection') }}";#}
+        {#window.staticStore.urlCartProduct = "{{ path('api_cart_products_get_collection') }}";#}
+        {#window.staticStore.urlOrder = "{{ path('api_orders_get_collection') }}";#}
+        {#window.staticStore.urlViewProduct = "{{ path('main_product_show_blank') }}";#}
+        {#window.staticStore.urlAssetImageProducts = "{{ asset('uploads/images/products') }}";#}
+    </script>
+    {{ encore_entry_script_tags('appMainCartShow') }}
+{% endblock %}
+

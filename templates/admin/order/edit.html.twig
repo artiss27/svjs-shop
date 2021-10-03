@@ -1,0 +1,134 @@
+{% extends 'admin/layout/layout_main.html.twig' %}
+
+{% block title_detailed %}Edit Order{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('appAdminOrder') }}
+{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            {% include 'admin/_embed/_card/_breadcrumbs.html.twig' with {
+                'sectionTitle': 'Orders',
+                'actionUrl': path('admin_order_list'),
+                'addActionUrl': path('admin_order_add'),
+                'entity': order
+            } %}
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Id:
+                </div>
+                <div class="col-md-11">
+                    {{ order.id }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Created at:
+                </div>
+                <div class="col-md-11">
+                    {{ order.createdAt|date('H:i:s d/m/Y') }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Updated at:
+                </div>
+                <div class="col-md-11">
+                    {{ order.updatedAt|date('H:i:s d/m/Y') }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.owner) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.owner) }}
+                    <div class="form-error">
+                        {{ form_errors(form.owner) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.status) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.status) }}
+                    <div class="form-error">
+                        {{ form_errors(form.status) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1"></div>
+                <div class="col-md-11 pl-5">
+                    {{ form_widget(form.isDeleted) }}
+                    {{ form_label(form.isDeleted) }}
+                    <div class="form-error">
+                        {{ form_errors(form.isDeleted) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Products:
+                </div>
+                <div class="col-md-11">
+                    <div id="app"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Total price:
+                </div>
+                <div class="col-md-11">
+                    {{ order.totalPrice|format_currency('USD') }}
+                </div>
+            </div>
+
+            <hr/>
+            {% include 'admin/_embed/_card/_form_buttons.html.twig' with {
+                'entity': order,
+                'catalogUrl': path('admin_order_list')
+            } %}
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    {% if order and order.id %}
+        {% include 'admin/_embed/_utils/_modal.html.twig' with {
+            'modalId': 'approveDeleteModal',
+            'modalTitle': 'Are you sure?',
+            'modalText': 'Order will be deleted.',
+            'actionUrl': path('admin_order_delete', {'id': order.id}),
+            'modalBtnText': 'Delete row'
+        } %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.staticStore = {}
+        window.staticStore.orderId = "{{ order ? order.id : '' }}";
+        window.staticStore.orderProducts = {{ orderProducts|json_encode|raw }};
+        window.staticStore.urlViewProduct = '{{ path('admin_product_edit_blank') }}';
+        window.staticStore.urlAPICategory = '{{ path('api_categories_get_collection') }}';
+        window.staticStore.urlAPIProduct = '{{ path('api_products_get_collection') }}';
+        window.staticStore.urlAPIOrder = '{{ path('api_orders_get_collection') }}';
+        window.staticStore.urlAPIOrderProduct = '{{ path('api_order_products_get_collection') }}';
+    </script>
+    {{ encore_entry_script_tags('appAdminOrder') }}
+{% endblock %}
