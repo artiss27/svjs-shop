@@ -19,7 +19,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#collapseOrders"
            aria-expanded="true" aria-controls="collapseOrders">
             <i class="fas fa-fw fa-credit-card"></i>
             <span>Orders</span>
@@ -39,7 +39,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#collapseProducts"
            aria-expanded="true" aria-controls="collapseProducts">
             <i class="fas fa-fw fa-cubes"></i>
             <span>Products</span>
@@ -53,7 +53,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#collapseCategories"
            aria-expanded="true" aria-controls="collapseProducts">
             <i class="fas fa-fw fa-folder"></i>
             <span>Categories</span>
@@ -74,7 +74,7 @@
 
     {% if is_granted('ROLE_SUPER_ADMIN') %}
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
                aria-expanded="true" aria-controls="collapseUsers">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Users</span>
