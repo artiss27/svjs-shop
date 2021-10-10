@@ -23,6 +23,8 @@ Encore
     .addEntry('section-main', './assets/section-main.js')
     .addEntry('section-admin', './assets/section-admin.js')
 
+    .addEntry('appAdminOrder', './assets/js/section/admin/admin-order/app.js')
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')
 
@@ -63,6 +65,8 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+
+    .enableVueLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

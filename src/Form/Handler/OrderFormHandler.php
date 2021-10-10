@@ -15,20 +15,21 @@ class OrderFormHandler
      * @var OrderManager
      */
     private $orderManager;
-    /**
-     * @var PaginatorInterface
-     */
-    private $paginator;
-    /**
-     * @var FilterBuilderUpdater
-     */
-    private $filterBuilderUpdater;
+//    /**
+//     * @var PaginatorInterface
+//     */
+//    private $paginator;
+//    /**
+//     * @var FilterBuilderUpdater
+//     */
+//    private $filterBuilderUpdater;
 
-    public function __construct(OrderManager $orderManager, PaginatorInterface $paginator, FilterBuilderUpdater $filterBuilderUpdater)
+//    public function __construct(OrderManager $orderManager, PaginatorInterface $paginator, FilterBuilderUpdater $filterBuilderUpdater)
+    public function __construct(OrderManager $orderManager)
     {
         $this->orderManager = $orderManager;
-        $this->paginator = $paginator;
-        $this->filterBuilderUpdater = $filterBuilderUpdater;
+//        $this->paginator = $paginator;
+//        $this->filterBuilderUpdater = $filterBuilderUpdater;
     }
 
     public function processOrderFiltersForm(Request $request, FormInterface $filterForm)
@@ -40,13 +41,13 @@ class OrderFormHandler
             ->setParameter('isDeleted', false);
 
         if ($filterForm->isSubmitted()) {
-            $this->filterBuilderUpdater->addFilterConditions($filterForm, $queryBuilder);
+//            $this->filterBuilderUpdater->addFilterConditions($filterForm, $queryBuilder);
         }
 
-        return $this->paginator->paginate(
-            $queryBuilder->getQuery(),
-            $request->query->getInt('page', 1)
-        );
+//        return $this->paginator->paginate(
+//            $queryBuilder->getQuery(),
+//            $request->query->getInt('page', 1)
+//        );
     }
 
     /**

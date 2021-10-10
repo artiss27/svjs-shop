@@ -9,7 +9,6 @@ use App\Form\Admin\EditOrderFormType;
 use App\Form\Admin\FilterType\OrderFilterFormType;
 use App\Form\DTO\EditOrderModel;
 use App\Form\Handler\OrderFormHandler;
-use App\Repository\OrderRepository;
 use App\Utils\Manager\OrderManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,21 +66,21 @@ class OrderController extends AbstractController
         $orderProducts = [];
 
         /** @var OrderProduct $product */
-       /* foreach ($order->getOrderProducts()->getValues() as $product) {
+        /*foreach ($order->getOrderProducts()->getValues() as $product) {
             $orderProducts[] = [
-                'id' => $product->getId(),
-                'product' => [
-                    'id' => $product->getProduct()->getId(),
-                    'title' => $product->getProduct()->getTitle(),
-                    'price' => $product->getProduct()->getPrice(),
+                'id'          => $product->getId(),
+                'product'     => [
+                    'id'       => $product->getProduct()->getId(),
+                    'title'    => $product->getProduct()->getTitle(),
+                    'price'    => $product->getProduct()->getPrice(),
                     'quantity' => $product->getProduct()->getQuantity(),
                     'category' => [
-                        'id' => $product->getProduct()->getCategory()->getId(),
-                        'title' => $product->getProduct()->getCategory()->getTitle()
-                    ]
+                        'id'    => $product->getProduct()->getCategory()->getId(),
+                        'title' => $product->getProduct()->getCategory()->getTitle(),
+                    ],
                 ],
-                'quantity' => $product->getQuantity(),
-                'pricePerOne' => $product->getPricePerOne()
+                'quantity'    => $product->getQuantity(),
+                'pricePerOne' => $product->getPricePerOne(),
             ];
         }*/
 
