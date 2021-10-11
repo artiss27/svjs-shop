@@ -14,7 +14,8 @@
                         <figure class="product-media">
                             {% for image in product.getProductImages().getValues() %}
                                 <img
-                                        src="{{ asset('uploads/images/products/' ~ product.id ~ '/' ~ image.getFilenameBig()) }}" alt="{{ product.title }}"
+                                        src="{{ asset('uploads/images/products/' ~ product.id ~ '/' ~ image.getFilenameBig()) }}"
+                                        alt="{{ product.title }}"
                                         class="product-image">
                             {% endfor %}
                         </figure>
@@ -36,15 +37,15 @@
                                 <div class="form-group ml-4">
                                     <label for="product_full_filter_quantity">Qty:</label>
                                     <input
-                                        type="number"
-                                        id="product_full_filter_quantity"
-                                        class="form-control"
-                                        value="{{ product.quantity }}"
-                                        min="1"
-                                        max="10"
-                                        step="1"
-                                        data-decimals="0"
-                                        required
+                                            type="number"
+                                            id="product_full_filter_quantity"
+                                            class="form-control"
+                                            value="{{ product.quantity }}"
+                                            min="1"
+                                            max="10"
+                                            step="1"
+                                            data-decimals="0"
+                                            required
                                     >
                                 </div>
                             </div>
@@ -77,16 +78,16 @@
 
 {% block javascripts %}
     <script>
-        const productUuid = '{{ product.uuid }}';
-        const productQuantityEl = document.getElementById('product_full_filter_quantity');
+      const productUuid       = '{{ product.uuid }}';
+      const productQuantityEl = document.getElementById('product_full_filter_quantity');
 
-        function addProductToCart() {
-            const quantity = parseInt(productQuantityEl.value);
+      function addProductToCart() {
+        const quantity = parseInt(productQuantityEl.value);
 
-            window.vueMenuCartInstance.addCartProduct({
-                uuid: productUuid,
-                quantity
-            })
-        }
+        window.vueMenuCartInstance.addCartProduct({
+                                                    uuid: productUuid,
+                                                    quantity,
+                                                  });
+      }
     </script>
 {% endblock %}
