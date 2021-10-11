@@ -32,14 +32,17 @@ class MakeOrderFromCartSubscriber implements EventSubscriberInterface
 
     public function __construct(Security $security, OrderManager $orderManager, EventDispatcherInterface $eventDispatcher)
     {
-        $this->security = $security;
-        $this->orderManager = $orderManager;
+        $this->security        = $security;
+        $this->orderManager    = $orderManager;
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function makeOrder(ViewEvent $event)
     {
-        $order = $event->getControllerResult();
+        $order  = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
         if (!$order instanceof Order || Request::METHOD_POST !== $method) {
@@ -59,12 +62,12 @@ class MakeOrderFromCartSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $content = json_decode($contentJson, true);
+        $content = json_decode($contentJson, true, 512, JSON_THROW_ON_ERROR);
         if (!array_key_exists('cartId', $content)) {
             return;
         }
 
-        $cartId = (int) $content['cartId'];
+        $cartId = (int)$content['cartId'];
 
         $this->orderManager->addOrderProductsFromCart($order, $cartId);
         $this->orderManager->recalculateOrderTotalPrice($order);
@@ -74,15 +77,15 @@ class MakeOrderFromCartSubscriber implements EventSubscriberInterface
 
     public function sendNotificationsAboutNewOrder(ViewEvent $event)
     {
-        $order = $event->getControllerResult();
+        $order  = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
         if (!$order instanceof Order || Request::METHOD_POST !== $method) {
             return;
         }
 
-        $event = new OrderCreatedFromCartEvent($order);
-        $this->eventDispatcher->dispatch($event);
+//        $event = new OrderCreatedFromCartEvent($order);
+//        $this->eventDispatcher->dispatch($event);
     }
 
     public static function getSubscribedEvents(): array
@@ -90,12 +93,12 @@ class MakeOrderFromCartSubscriber implements EventSubscriberInterface
         return [
             KernelEvents::VIEW => [
                 [
-                    'makeOrder', EventPriorities::PRE_WRITE
+                    'makeOrder', EventPriorities::PRE_WRITE,
                 ],
                 [
-                    'sendNotificationsAboutNewOrder', EventPriorities::POST_WRITE
-                ]
-            ]
+                    'sendNotificationsAboutNewOrder', EventPriorities::POST_WRITE,
+                ],
+            ],
         ];
     }
 }
