@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * TODO: need to clean tmp folder
  * @Route("/admin/product", name="admin_product_")
  */
 class ProductController extends AbstractController
