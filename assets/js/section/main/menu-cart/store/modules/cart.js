@@ -47,6 +47,9 @@ const actions = {
     ) {
       commit('setCart', result.data['hydra:member'][0]);
     } else {
+      /**
+       * TODO: change it every user create cart without order
+       */
       dispatch('createCart');
     }
   },

@@ -104,7 +104,7 @@ const actions = {
     const data = {
       cartId: state.cart.id,
     };
-    console.log(url, data);
+
     const result = await axios.post(url, data, apiConfig);
 
     if (result.data && result.status === StatusCodes.CREATED) {

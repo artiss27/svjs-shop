@@ -1,3 +1,5 @@
 framework:
     mailer:
+        headers:
+            from: '%env(MAILER_ROBOT_FROM)%'
         dsn: '%env(MAILER_DSN)%'

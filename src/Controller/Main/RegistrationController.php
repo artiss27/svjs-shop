@@ -27,6 +27,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
+     * TODO: after register user lost his cart
      * @Route("/register", name="app_register")
      */
     public function register(Request $request, UserPasswordHasherInterface $passwordEncoder): Response
@@ -97,7 +98,6 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute(self::HOMEPAGE_ROUTE);
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute(self::HOMEPAGE_ROUTE);
