@@ -24,7 +24,7 @@ security:
             provider: app_user_provider
             access_denied_handler: App\Security\Handler\AccessAdminDeniedHandler
             entry_point: App\Security\EntryPoint\AuthenticationAdminEntryPoint
-            custom_authenticator: App\Security\Authentificator\Admin\LoginFormAuthenticator
+            custom_authenticator: App\Security\Authenticator\Admin\LoginFormAuthenticator
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 684800
@@ -37,7 +37,10 @@ security:
             provider: app_user_provider
             access_denied_handler: App\Security\Handler\AccessAdminDeniedHandler
             entry_point: App\Security\EntryPoint\AuthenticationAdminEntryPoint
-            custom_authenticator: App\Security\Authentificator\Main\LoginFormAuthenticator
+            custom_authenticator:
+                - App\Security\Authenticator\Main\LoginFormAuthenticator
+                - App\Security\Authenticator\Main\FacebookAuthenticator
+                - App\Security\Authenticator\Main\GoogleAuthenticator
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds

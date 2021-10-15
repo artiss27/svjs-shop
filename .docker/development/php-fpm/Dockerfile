@@ -66,6 +66,13 @@ RUN docker-php-ext-enable \
         zip \
         pdo_pgsql
 
-COPY ./php/php.ini /usr/local/etc/php/
+#develop layer
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+RUN pecl install ast
+RUN docker-php-ext-enable ast
+
+COPY php.ini /usr/local/etc/php/
 
 WORKDIR /app
