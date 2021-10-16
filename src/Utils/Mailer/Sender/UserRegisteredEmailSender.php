@@ -26,6 +26,11 @@ class UserRegisteredEmailSender
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * TODO: change setSubject
+     * @param User                           $user
+     * @param VerifyEmailSignatureComponents $signatureComponents
+     */
     public function sendEmailToClient(User $user, VerifyEmailSignatureComponents $signatureComponents)
     {
         $emailContext = [];
