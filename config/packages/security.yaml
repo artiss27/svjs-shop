@@ -35,8 +35,8 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            access_denied_handler: App\Security\Handler\AccessAdminDeniedHandler
-            entry_point: App\Security\EntryPoint\AuthenticationAdminEntryPoint
+            access_denied_handler: App\Security\Handler\AccessMainDeniedHandler
+            entry_point: App\Security\EntryPoint\AuthenticationMainEntryPoint
             custom_authenticator:
                 - App\Security\Authenticator\Main\LoginFormAuthenticator
                 - App\Security\Authenticator\Main\FacebookAuthenticator
@@ -67,4 +67,4 @@ security:
          - { path: ^/admin/login }
          - { path: ^/admin/user, roles: ROLE_SUPER_ADMIN }
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/%app_locales.in_brackets%/profile, roles: ROLE_USER }

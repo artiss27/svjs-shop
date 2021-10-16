@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="ru" trgLang="ru">
+  <file id="messages.ru">
+    <unit id="wGv5ZwF" name="Enter your password">
+      <segment>
+        <source>Enter your password</source>
+        <target>Введите пароль</target>
+      </segment>
+    </unit>
+    <unit id="KDf2_hy" name="Enter your email">
+      <segment>
+        <source>Enter your email</source>
+        <target>Введите email</target>
+      </segment>
+    </unit>
+    <unit id="Fe2zEyl" name="Please enter your email">
+      <segment>
+        <source>Please enter your email</source>
+        <target>Пожалуйста введите email</target>
+      </segment>
+    </unit>
+    <unit id="emYoaaa" name="Registration Form">
+      <segment>
+        <source>Registration Form</source>
+        <target>Форма регистрации</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

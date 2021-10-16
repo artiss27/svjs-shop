@@ -8,6 +8,11 @@ parameters:
     uploads_temp_dir: '%uploads_dir%/temp'
     uploads_images_dir: '%uploads_dir%/images'
     product_images_dir: '%uploads_images_dir%/products'
+    locale: 'ru'
+    app_locales: en|fr|ru
+    app_locales.in_brackets: '(%app_locales%)'
+#    router.request_context.scheme: '%env(SITE_BASE_SCHEME)%'
+#    router.request_context.host: '%env(SITE_BASE_HOST)%'
 
 services:
     # default configuration for services in *this* file
@@ -17,6 +22,7 @@ services:
         bind:
             string $uploadsTempDir: '%uploads_temp_dir%'
             string $productImagesDir: '%product_images_dir%'
+            string $defaultLocale: '%locale%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
