@@ -19,12 +19,12 @@
                 <table class="table table-bordered" id="main_table">
                     <thead>
                     <tr>
-{#                        <th>{{ knp_pagination_sortable(pagination, 'Id', 'o.id') }}</th>#}
-{#                        <th>{{ knp_pagination_sortable(pagination, 'Created at', 'o.createdAt') }}</th>#}
-{#                        <th>Count of products</th>#}
-{#                        <th>{{ knp_pagination_sortable(pagination, 'Total price', 'o.totalPrice') }}</th>#}
-{#                        <th>{{ knp_pagination_sortable(pagination, 'User', 'u.id') }}</th>#}
-{#                        <th>{{ knp_pagination_sortable(pagination, 'Status', 'o.status') }}</th>#}
+                        <th>{{ knp_pagination_sortable(pagination, 'Id', 'o.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Created at', 'o.createdAt') }}</th>
+                        <th>Count of products</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Total price', 'o.totalPrice') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'User', 'u.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Status', 'o.status') }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -58,7 +58,7 @@
                 </table>
             </div>
             <div class="navigation">
-{#                {{ knp_pagination_render(pagination) }}#}
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>

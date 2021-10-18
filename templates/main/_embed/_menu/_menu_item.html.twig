@@ -8,7 +8,7 @@
 
 {% set url = 'main_homepage' %}
 {% set isActiveItem = 0 %}
-                                                                                    {% set ROUTE_NAME = '' %}
+
 {% if ROUTE_NAME == 'main_category_show' %}
     {% set isActiveItem = (app.request.attributes.get('slug') == slug) %}
 {% elseif ROUTE_NAME == 'main_product_show' %}
