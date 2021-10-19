@@ -14,7 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * TODO: need to clean tmp folder
+ * TODO: need to clean tmp folder.
+ *
  * @Route("/admin/product", name="admin_product_")
  */
 class ProductController extends AbstractController
@@ -25,6 +26,7 @@ class ProductController extends AbstractController
     public function list(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findBy(['isDeleted' => false], ['id' => 'DESC'], 50);
+
         return $this->render('admin/product/list.html.twig', ['products' => $products]);
     }
 
@@ -55,9 +57,9 @@ class ProductController extends AbstractController
         $images = $product ? $product->getProductImages()->getValues() : [];
 
         return $this->render('admin/product/edit.html.twig', [
-            'images'  => $images,
+            'images' => $images,
             'product' => $product,
-            'form'    => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 

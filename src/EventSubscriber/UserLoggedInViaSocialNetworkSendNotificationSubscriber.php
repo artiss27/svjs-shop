@@ -29,7 +29,7 @@ class UserLoggedInViaSocialNetworkSendNotificationSubscriber implements EventSub
     public static function getSubscribedEvents(): array
     {
         return [
-            UserLoggedInViaSocialNetworkEvent::class => 'onUserLoggedInViaSocialNetworkEvent'
+            UserLoggedInViaSocialNetworkEvent::class => 'onUserLoggedInViaSocialNetworkEvent',
         ];
     }
 }

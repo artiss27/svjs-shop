@@ -19,6 +19,12 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
+    "composer/semver": {
+        "version": "3.2.5"
+    },
+    "composer/xdebug-handler": {
+        "version": "2.0.2"
+    },
     "dama/doctrine-test-bundle": {
         "version": "6.6",
         "recipe": {
@@ -132,6 +138,18 @@
     "fig/link-util": {
         "version": "1.2.0"
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -222,6 +240,9 @@
     "php": {
         "version": "7.3"
     },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
+    },
     "php-translation/common": {
         "version": "3.1.0"
     },
@@ -260,6 +281,9 @@
     },
     "phpspec/prophecy": {
         "version": "1.14.0"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.99"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.7"

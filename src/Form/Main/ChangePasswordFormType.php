@@ -16,36 +16,36 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
             ->add('plainPassword', RepeatedType::class, [
-                'type'            => PasswordType::class,
-                'first_options'   => [
-                    'attr'        => [
+                'type' => PasswordType::class,
+                'first_options' => [
+                    'attr' => [
                         'autocomplete' => 'new-password',
-                        'class'        => 'form-control',
+                        'class' => 'form-control',
                     ],
                     'constraints' => [
                         new NotBlank([
                                          'message' => 'Please enter a password',
                                      ]),
                         new Length([
-                                       'min'        => 6,
+                                       'min' => 6,
                                        'minMessage' => 'Your password should be at least {{ limit }} characters',
                                        // max length allowed by Symfony for security reasons
-                                       'max'        => 4096,
+                                       'max' => 4096,
                                    ]),
                     ],
-                    'label'       => 'New password',
+                    'label' => 'New password',
                 ],
-                'second_options'  => [
-                    'attr'  => [
+                'second_options' => [
+                    'attr' => [
                         'autocomplete' => 'new-password',
-                        'class'        => 'form-control',
+                        'class' => 'form-control',
                     ],
                     'label' => 'Repeat Password',
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'mapped'          => false,
+                'mapped' => false,
             ]);
     }
 

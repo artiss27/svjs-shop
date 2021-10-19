@@ -27,7 +27,6 @@ class MailerSender
     }
 
     /**
-     * @param MailerOptions $mailerOptions
      * @return TemplatedEmail
      */
     public function sendTemplatedEmail(MailerOptions $mailerOptions)
@@ -46,7 +45,7 @@ class MailerSender
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $ex) {
             $this->logger->critical($mailerOptions->getSubject(), [
-                'errorText' => $ex->getTraceAsString()
+                'errorText' => $ex->getTraceAsString(),
             ]);
 
             $systemMailerOptions = new MailerOptions();
@@ -59,8 +58,8 @@ class MailerSender
     }
 
     /**
-     * TODO: change recepient
-     * @param MailerOptions $mailerOptions
+     * TODO: change recepient.
+     *
      * @return Email
      */
     private function sendSystemEmail(MailerOptions $mailerOptions)
@@ -77,7 +76,7 @@ class MailerSender
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $ex) {
             $this->logger->critical($mailerOptions->getSubject(), [
-                'errorText' => $ex->getTraceAsString()
+                'errorText' => $ex->getTraceAsString(),
             ]);
         }
 

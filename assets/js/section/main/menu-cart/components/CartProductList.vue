@@ -2,25 +2,23 @@
   <div class="products">
     <CartProductItem
       v-for="cartProduct in cart.cartProducts"
-      :cart-product="cartProduct"
       :key="cartProduct.id"
+      :cart-product="cartProduct"
     />
   </div>
 </template>
 
 <script>
 import CartProductItem from "./CartProductItem";
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "CartProductList",
-  components: {CartProductItem},
+  components: { CartProductItem },
   computed: {
-    ...mapState("cart", ["cart"])
-  }
-}
+    ...mapState("cart", ["cart"]),
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

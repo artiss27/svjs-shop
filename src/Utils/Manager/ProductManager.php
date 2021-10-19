@@ -26,17 +26,11 @@ class ProductManager extends AbstractBaseManager
         $this->productImageManager = $productImageManager;
     }
 
-    /**
-     * @return ObjectRepository
-     */
     public function getRepository(): ObjectRepository
     {
         return $this->entityManager->getRepository(Product::class);
     }
 
-    /**
-     * @param object $product
-     */
     public function remove(object $product)
     {
         $product->setIsDeleted(true);
@@ -44,7 +38,6 @@ class ProductManager extends AbstractBaseManager
     }
 
     /**
-     * @param Product $product
      * @return string
      */
     public function getProductImagesDir(Product $product)

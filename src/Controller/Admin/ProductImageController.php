@@ -29,7 +29,7 @@ class ProductImageController extends AbstractController
         $productImageManager->removeImageFromProduct($productImage, $productImagesDir);
 
         return $this->redirectToRoute('admin_product_edit', [
-            'id' => $product->getId()
+            'id' => $product->getId(),
         ]);
     }
 }

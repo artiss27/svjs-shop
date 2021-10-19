@@ -34,7 +34,7 @@ class OrderController extends AbstractController
         return $this->render('admin/order/list.html.twig', [
             'pagination' => $pagination,
             'orderStatusChoices' => OrderStaticStorage::getOrderStatusChoices(),
-            'form' => $filterForm->createView()
+            'form' => $filterForm->createView(),
         ]);
     }
 
@@ -65,7 +65,7 @@ class OrderController extends AbstractController
 
         $orderProducts = [];
 
-        /** @var OrderProduct $product */
+        /* @var OrderProduct $product */
         /*foreach ($order->getOrderProducts()->getValues() as $product) {
             $orderProducts[] = [
                 'id'          => $product->getId(),
@@ -87,7 +87,7 @@ class OrderController extends AbstractController
         return $this->render('admin/order/edit.html.twig', [
             'order' => $order,
             'orderProducts' => $orderProducts,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 

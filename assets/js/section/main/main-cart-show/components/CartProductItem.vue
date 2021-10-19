@@ -3,29 +3,21 @@
     <td class="product-col">
       <div class="text-center">
         <figure>
-          <a
-            :href="urlShowProduct"
-            target="_blank"
-          >
+          <a :href="urlShowProduct" target="_blank">
             <img
               :src="getUrlProductImage(productImage)"
               :alt="cartProduct.product.title"
-            >
+            />
           </a>
         </figure>
         <div class="product-title">
-          <a
-            :href="urlShowProduct"
-            target="_blank"
-          >
+          <a :href="urlShowProduct" target="_blank">
             {{ cartProduct.product.title }}
           </a>
         </div>
       </div>
     </td>
-    <td class="price-col">
-      ${{ cartProduct.product.price }}
-    </td>
+    <td class="price-col">${{ cartProduct.product.price }}</td>
     <td class="quantity-col">
       <input
         v-model="quantity"
@@ -34,11 +26,9 @@
         min="1"
         step="1"
         @focusout="updateQuantity"
-      >
+      />
     </td>
-    <td class="total-col">
-      ${{ productPrice }}
-    </td>
+    <td class="total-col">${{ productPrice }}</td>
     <td class="remove-col">
       <a
         href="#"
@@ -53,23 +43,20 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      quantity: 1
-    }
-  },
   name: "CartProductItem",
   props: {
     cartProduct: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  created() {
-    this.quantity = this.cartProduct.quantity;
+  data() {
+    return {
+      quantity: 1,
+    };
   },
   computed: {
     ...mapState("cart", ["staticStore"]),
@@ -82,32 +69,35 @@ export default {
       return this.quantity * this.cartProduct.product.price;
     },
     urlShowProduct() {
-      return this.staticStore.url.viewProduct + "/" + this.cartProduct.product.uuid;
-    }
+      return (
+        this.staticStore.url.viewProduct + "/" + this.cartProduct.product.uuid
+      );
+    },
+  },
+  created() {
+    this.quantity = this.cartProduct.quantity;
   },
   methods: {
     ...mapActions("cart", ["removeCartProduct", "updateCartProductQuantity"]),
     getUrlProductImage(productImage) {
       return (
-          this.staticStore.url.assetImageProducts +
-          "/" +
-          this.cartProduct.product.id +
-          "/" +
-          productImage.filenameSmall
+        this.staticStore.url.assetImageProducts +
+        "/" +
+        this.cartProduct.product.id +
+        "/" +
+        productImage.filenameSmall
       );
     },
     updateQuantity() {
       const payload = {
         cartProductId: this.cartProduct.id,
-        quantity: this.quantity
+        quantity: this.quantity,
       };
 
       this.updateCartProductQuantity(payload);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

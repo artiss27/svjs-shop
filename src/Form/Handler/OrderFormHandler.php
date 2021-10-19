@@ -50,7 +50,6 @@ class OrderFormHandler
     }
 
     /**
-     * @param Order $order
      * @return Order|null
      */
     public function processEditForm(Order $order)

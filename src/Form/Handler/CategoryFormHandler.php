@@ -19,7 +19,6 @@ class CategoryFormHandler
     }
 
     /**
-     * @param EditCategoryModel $editCategoryModel
      * @return Category|null
      */
     public function processEditForm(EditCategoryModel $editCategoryModel)

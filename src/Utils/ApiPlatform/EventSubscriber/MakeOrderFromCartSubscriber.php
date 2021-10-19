@@ -90,12 +90,12 @@ class MakeOrderFromCartSubscriber implements EventSubscriberInterface
         return [
             KernelEvents::VIEW => [
                 [
-                    'makeOrder', EventPriorities::PRE_WRITE
+                    'makeOrder', EventPriorities::PRE_WRITE,
                 ],
                 [
-                    'sendNotificationsAboutNewOrder', EventPriorities::POST_WRITE
-                ]
-            ]
+                    'sendNotificationsAboutNewOrder', EventPriorities::POST_WRITE,
+                ],
+            ],
         ];
     }
 }

@@ -24,6 +24,5 @@ class AuthGoogleController extends AbstractController
      */
     public function connectCheckAction()
     {
-        //
     }
 }

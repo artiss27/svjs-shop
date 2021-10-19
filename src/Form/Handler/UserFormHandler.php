@@ -28,6 +28,7 @@ class UserFormHandler
 
     /**
      * @param Form $form
+     *
      * @return User|null
      */
     public function processEditForm(FormInterface $form)

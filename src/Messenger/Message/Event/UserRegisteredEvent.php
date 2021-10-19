@@ -2,8 +2,6 @@
 
 namespace App\Messenger\Message\Event;
 
-use App\Entity\User;
-
 class UserRegisteredEvent
 {
     private $userId;

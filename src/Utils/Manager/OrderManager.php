@@ -23,18 +23,11 @@ class OrderManager extends AbstractBaseManager
         $this->cartManager = $cartManager;
     }
 
-    /**
-     * @return ObjectRepository
-     */
     public function getRepository(): ObjectRepository
     {
         return $this->entityManager->getRepository(Order::class);
     }
 
-    /**
-     * @param string $sessionId
-     * @param User $user
-     */
     public function createOrderFromCartBySessionId(string $sessionId, User $user)
     {
         $cart = $this->cartManager->getRepository()->findOneBy(['sessionId' => $sessionId]);
@@ -79,9 +72,6 @@ class OrderManager extends AbstractBaseManager
         $this->cartManager->remove($cart);
     }
 
-    /**
-     * @param Order $order
-     */
     public function recalculateOrderTotalPrice(Order $order)
     {
         $orderTotalPrice = 0;
@@ -94,9 +84,6 @@ class OrderManager extends AbstractBaseManager
         $order->setTotalPrice($orderTotalPrice);
     }
 
-    /**
-     * @param object $entity
-     */
     public function save(object $entity)
     {
         $entity->setUpdatedAt(new \DateTimeImmutable());

@@ -5,12 +5,9 @@
         <Alert />
 
         <div v-if="showCartContent">
-          <CartProductList/>
-          <CartTotalPrice/>
-          <a
-              class="btn btn-success mb-3 text-white"
-              @click="makeOrder"
-          >
+          <CartProductList />
+          <CartTotalPrice />
+          <a class="btn btn-success mb-3 text-white" @click="makeOrder">
             MAKE ORDER
           </a>
         </div>
@@ -20,29 +17,27 @@
 </template>
 
 <script>
-import CartProductList        from './components/CartProductList';
-import CartTotalPrice         from './components/CartTotalPrice';
-import {mapActions, mapState} from 'vuex';
-import Alert                  from './components/Alert';
+import CartProductList from "./components/CartProductList";
+import CartTotalPrice from "./components/CartTotalPrice";
+import { mapActions, mapState } from "vuex";
+import Alert from "./components/Alert";
 
 export default {
   name: "App",
-  components: {Alert, CartTotalPrice, CartProductList},
-  created() {
-    this.getCart();
-  },
+  components: { Alert, CartTotalPrice, CartProductList },
   computed: {
     ...mapState("cart", ["cart", "isSentForm"]),
     showCartContent() {
       return !this.isSentForm && Object.keys(this.cart).length;
-    }
+    },
+  },
+  created() {
+    this.getCart();
   },
   methods: {
-    ...mapActions("cart", ["getCart", "makeOrder"])
-  }
-}
+    ...mapActions("cart", ["getCart", "makeOrder"]),
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

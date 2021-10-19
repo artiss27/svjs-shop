@@ -32,7 +32,7 @@ class EditOrderModel
      */
     public $createdAt;
 
-    public static function makeFromOrder(?Order $order): self
+    public static function makeFromOrder(?Order $order)
     {
         $model = new self();
         if (!$order) {

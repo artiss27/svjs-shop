@@ -7,7 +7,6 @@ use App\Utils\Mailer\DTO\MailerOptions;
 use App\Utils\Mailer\MailerSender;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
-use SymfonyCasts\Bundle\VerifyEmail\Model\VerifyEmailSignatureComponents;
 
 class ResetUserPasswordEmailSender
 {

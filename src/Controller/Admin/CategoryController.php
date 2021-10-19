@@ -2,11 +2,11 @@
 
 namespace App\Controller\Admin;
 
-use App\Form\DTO\EditCategoryModel;
+use App\Entity\Category;
 use App\Form\Admin\EditCategoryFormType;
+use App\Form\DTO\EditCategoryModel;
 use App\Form\Handler\CategoryFormHandler;
 use App\Repository\CategoryRepository;
-use App\Entity\Category;
 use App\Utils\Manager\CategoryManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,7 +55,7 @@ class CategoryController extends AbstractController
 
         return $this->render('admin/category/edit.html.twig', [
             'category' => $category,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 

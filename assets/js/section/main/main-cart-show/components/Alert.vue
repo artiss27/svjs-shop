@@ -1,13 +1,11 @@
 <template>
-  <div v-if="alert.message"
-      :class="alertClass"
-  >
+  <div v-if="alert.message" :class="alertClass">
     {{ alert.message }}
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "Alert",
@@ -15,11 +13,9 @@ export default {
     ...mapState("cart", ["alert"]),
     alertClass() {
       return "alert alert-" + this.alert.type;
-    }
+    },
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

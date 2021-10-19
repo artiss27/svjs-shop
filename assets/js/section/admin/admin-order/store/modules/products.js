@@ -1,29 +1,32 @@
-import {concatUrlByParams, getUrlProductsByCategory} from '../../../../../utils/url-generator';
-import axios                                         from 'axios';
-import {StatusCodes}                                 from 'http-status-codes';
-import {apiConfig}                                   from '../../../../../utils/settings';
+import {
+  concatUrlByParams,
+  getUrlProductsByCategory,
+} from "../../../../../utils/url-generator";
+import axios from "axios";
+import { StatusCodes } from "http-status-codes";
+import { apiConfig } from "../../../../../utils/settings";
 
 const state = () => ({
-  categories:       [],
+  categories: [],
   categoryProducts: [],
-  orderProducts:    [],
-  busyProductsIds:  [],
+  orderProducts: [],
+  busyProductsIds: [],
 
-  newOrderProduct:       {
-    categoryId:  '',
-    productId:   '',
-    quantity:    '',
-    pricePerOne: '',
+  newOrderProduct: {
+    categoryId: "",
+    productId: "",
+    quantity: "",
+    pricePerOne: "",
   },
-  staticStore:           {
-    orderId:       window.staticStore.orderId,
+  staticStore: {
+    orderId: window.staticStore.orderId,
 
     url: {
-      viewProduct:     window.staticStore.urlViewProduct,
-      apiOrder:        window.staticStore.urlAPIOrder,
+      viewProduct: window.staticStore.urlViewProduct,
+      apiOrder: window.staticStore.urlAPIOrder,
       apiOrderProduct: window.staticStore.urlAPIOrderProduct,
-      apiCategory:     window.staticStore.urlAPICategory,
-      apiProduct:      window.staticStore.urlAPIProduct,
+      apiCategory: window.staticStore.urlAPICategory,
+      apiProduct: window.staticStore.urlAPIProduct,
     },
   },
   viewProductCountLimit: 25,
@@ -32,57 +35,65 @@ const state = () => ({
 const getters = {
   freeCategoryProducts(state) {
     return state.categoryProducts.filter(
-      item => state.busyProductsIds.indexOf(item.id) === -1
+      (item) => state.busyProductsIds.indexOf(item.id) === -1
     );
-  }
+  },
 };
 
 const actions = {
-  async getOrderProducts({commit, state}) {
+  async getOrderProducts({ commit, state }) {
     const url = concatUrlByParams(
       state.staticStore.url.apiOrder,
-      state.staticStore.orderId,
+      state.staticStore.orderId
     );
 
     const result = await axios.get(url, apiConfig);
     // console.log(result);
     if (result.data && result.status === StatusCodes.OK) {
-      commit('setOrderProducts', result.data.orderProducts);
-      commit('setBusyProductsIds');
+      commit("setOrderProducts", result.data.orderProducts);
+      commit("setBusyProductsIds");
     }
   },
-  async getProductsByCategory({commit, state}) {
-    const url    = getUrlProductsByCategory(state.staticStore.url.apiProduct, state.newOrderProduct.categoryId, 1, state.viewProductCountLimit);
+  async getProductsByCategory({ commit, state }) {
+    const url = getUrlProductsByCategory(
+      state.staticStore.url.apiProduct,
+      state.newOrderProduct.categoryId,
+      1,
+      state.viewProductCountLimit
+    );
     const result = await axios.get(url, apiConfig);
     if (result.data && result.status === StatusCodes.OK) {
-      commit('setCategoryProducts', result.data['hydra:member']);
+      commit("setCategoryProducts", result.data["hydra:member"]);
     }
   },
-  async getCategories({commit, state}) {
-    const url    = state.staticStore.url.apiCategory;
+  async getCategories({ commit, state }) {
+    const url = state.staticStore.url.apiCategory;
     const result = await axios.get(url, apiConfig);
     if (result.data && result.status === StatusCodes.OK) {
-      commit('setCategories', result.data['hydra:member']);
+      commit("setCategories", result.data["hydra:member"]);
     }
   },
-  async addNewOrderProduct({state, dispatch}) {
-    const url    = state.staticStore.url.apiOrderProduct;
-    const data   = {
+  async addNewOrderProduct({ state, dispatch }) {
+    const url = state.staticStore.url.apiOrderProduct;
+    const data = {
       pricePerOne: state.newOrderProduct.pricePerOne,
-      quantity:    parseInt(state.newOrderProduct.quantity),
-      product:     'api/products/' + state.newOrderProduct.productId,
-      appOrder:    'api/orders/' + state.staticStore.orderId,
+      quantity: parseInt(state.newOrderProduct.quantity),
+      product: "api/products/" + state.newOrderProduct.productId,
+      appOrder: "api/orders/" + state.staticStore.orderId,
     };
     const result = await axios.post(url, data, apiConfig);
     if (result.data && result.status === StatusCodes.CREATED) {
-      dispatch('getOrderProducts');
+      dispatch("getOrderProducts");
     }
   },
-  async removeOrderProduct({state, dispatch}, orderProductId) {
-    const url    = concatUrlByParams(state.staticStore.url.apiOrderProduct, orderProductId);
+  async removeOrderProduct({ state, dispatch }, orderProductId) {
+    const url = concatUrlByParams(
+      state.staticStore.url.apiOrderProduct,
+      orderProductId
+    );
     const result = await axios.delete(url, apiConfig);
     if (result.status === StatusCodes.NO_CONTENT) {
-      dispatch('getOrderProducts');
+      dispatch("getOrderProducts");
     }
   },
 };
@@ -95,16 +106,16 @@ const mutations = {
     state.categoryProducts = categoryProducts;
   },
   setNewProductInfo(state, formData) {
-    state.newOrderProduct.categoryId  = formData.categoryId;
-    state.newOrderProduct.productId   = formData.productId;
-    state.newOrderProduct.quantity    = formData.quantity;
+    state.newOrderProduct.categoryId = formData.categoryId;
+    state.newOrderProduct.productId = formData.productId;
+    state.newOrderProduct.quantity = formData.quantity;
     state.newOrderProduct.pricePerOne = formData.pricePerOne;
   },
   setOrderProducts(state, orderProducts) {
     state.orderProducts = orderProducts;
   },
   setBusyProductsIds(state) {
-    state.busyProductsIds = state.orderProducts.map(item => item.product.id);
+    state.busyProductsIds = state.orderProducts.map((item) => item.product.id);
   },
 };
 

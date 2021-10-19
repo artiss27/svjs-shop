@@ -55,8 +55,8 @@ class CartApiController extends AbstractController
         return new JsonResponse([
             'success' => false,
             'data' => [
-                'test' => 123
-            ]
+                'test' => 123,
+            ],
         ]);
     }
 }

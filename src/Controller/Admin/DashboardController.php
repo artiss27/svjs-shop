@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractController
 {
-
     /**
      * @Route("/dashboard", name="admin_dashboard_show")
      */

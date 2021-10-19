@@ -51,30 +51,22 @@ class FacebookAuthenticator extends OAuth2Authenticator
 
     public function __construct(ClientRegistry $clientRegistry, UserManager $userManager, RouterInterface $router, SessionInterface $session, EventDispatcherInterface $eventDispatcher)
     {
-        $this->clientRegistry  = $clientRegistry;
-        $this->router          = $router;
-        $this->userManager     = $userManager;
-        $this->session         = $session;
+        $this->clientRegistry = $clientRegistry;
+        $this->router = $router;
+        $this->userManager = $userManager;
+        $this->session = $session;
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param Request $request
-     * @return bool|null
-     */
     public function supports(Request $request): ?bool
     {
         // continue ONLY if the current ROUTE matches the check ROUTE
         return 'connect_facebook_check' === $request->attributes->get('_route');
     }
 
-    /**
-     * @param Request $request
-     * @return PassportInterface
-     */
     public function authenticate(Request $request): PassportInterface
     {
-        $client      = $this->clientRegistry->getClient('facebook_main');
+        $client = $this->clientRegistry->getClient('facebook_main');
         $accessToken = $this->fetchAccessToken($client);
 
         return new SelfValidatingPassport(
@@ -119,12 +111,6 @@ class FacebookAuthenticator extends OAuth2Authenticator
         );
     }
 
-    /**
-     * @param Request        $request
-     * @param TokenInterface $token
-     * @param string         $firewallName
-     * @return Response|null
-     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // change "app_homepage" to some route in your app
@@ -136,11 +122,6 @@ class FacebookAuthenticator extends OAuth2Authenticator
         //return null;
     }
 
-    /**
-     * @param Request                 $request
-     * @param AuthenticationException $exception
-     * @return Response|null
-     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         $message = strtr($exception->getMessageKey(), $exception->getMessageData());

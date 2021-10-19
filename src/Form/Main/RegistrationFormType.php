@@ -20,11 +20,11 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label'       => 'Enter your email',
-                'required'    => true,
-                'attr'        => [
-                    'class'       => 'form-control',
-                    'autofocus'   => 'autofocus',
+                'label' => 'Enter your email',
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'autofocus' => 'autofocus',
                     'placeholder' => 'Please enter your email',
                 ],
                 'constraints' => [
@@ -33,30 +33,30 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label'       => 'I agree to the <a href="#">privacy polisy</a> *',
-                'required'    => true,
-                'label_html'  => true,
-                'mapped'      => false,
-                'attr'        => ['class' => 'custom-control-input'],
-                'label_attr'  => ['class' => 'custom-control-label'],
+                'label' => 'I agree to the <a href="#">privacy polisy</a> *',
+                'required' => true,
+                'label_html' => true,
+                'mapped' => false,
+                'attr' => ['class' => 'custom-control-input'],
+                'label_attr' => ['class' => 'custom-control-label'],
                 'constraints' => [
                     new IsTrue(['message' => 'Please check the box']),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label'       => 'Enter your password',
-                'required'    => true,
-                'mapped'      => false,
-                'attr'        => [
-                    'class'        => 'form-control',
+                'label' => 'Enter your password',
+                'required' => true,
+                'mapped' => false,
+                'attr' => [
+                    'class' => 'form-control',
                     'autocomplete' => 'new-password',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Please enter a password']),
                     new Length([
-                                   'min'        => 6,
+                                   'min' => 6,
                                    'minMessage' => 'Your password should be at least {{ limit }} characters',
-                                   'max'        => 4096,
+                                   'max' => 4096,
                                ]),
                 ],
             ]);

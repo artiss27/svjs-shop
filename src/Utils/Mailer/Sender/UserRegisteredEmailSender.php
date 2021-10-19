@@ -21,15 +21,12 @@ class UserRegisteredEmailSender
 
     public function __construct(MailerSender $mailerSender, UrlGeneratorInterface $urlGenerator)
     {
-
         $this->mailerSender = $mailerSender;
         $this->urlGenerator = $urlGenerator;
     }
 
     /**
-     * TODO: change setSubject
-     * @param User                           $user
-     * @param VerifyEmailSignatureComponents $signatureComponents
+     * TODO: change setSubject.
      */
     public function sendEmailToClient(User $user, VerifyEmailSignatureComponents $signatureComponents)
     {

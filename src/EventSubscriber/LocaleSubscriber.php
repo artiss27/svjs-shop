@@ -40,9 +40,9 @@ class LocaleSubscriber implements EventSubscriberInterface
         return [
             KernelEvents::REQUEST => [
                 [
-                    'onKernelRequest', 20
-                ]
-            ]
+                    'onKernelRequest', 20,
+                ],
+            ],
         ];
     }
 }

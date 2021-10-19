@@ -17,7 +17,7 @@ class EditCategoryFormType extends AbstractType
                 'label' => 'Title',
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
             ]);
     }

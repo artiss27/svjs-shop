@@ -23,24 +23,24 @@
 </template>
 
 <script>
-import {mapActions, mapState}       from 'vuex';
-import {getUrlViewProduct}          from '../../../../utils/url-generator';
-import {getProductInformativeTitle} from '../../../../utils/title-formatter';
+import { mapActions, mapState } from "vuex";
+import { getUrlViewProduct } from "../../../../utils/url-generator";
+import { getProductInformativeTitle } from "../../../../utils/title-formatter";
 
 export default {
-  name:     'OrderProductItem',
-  props:    {
+  name: "OrderProductItem",
+  props: {
     orderProduct: {
-      type:    Object,
+      type: Object,
       default: () => {},
     },
-    index:        {
-      type:    Number,
+    index: {
+      type: Number,
       default: 0,
     },
   },
   computed: {
-    ...mapState('products', ['staticStore']),
+    ...mapState("products", ["staticStore"]),
     rowNumber() {
       return this.index + 1;
     },
@@ -51,19 +51,22 @@ export default {
       return this.orderProduct.product.category.title;
     },
   },
-  methods:  {
-    ...mapActions('products', ['removeOrderProduct']),
+  methods: {
+    ...mapActions("products", ["removeOrderProduct"]),
     viewDetails(event) {
       event.preventDefault();
 
       getUrlViewProduct();
-      const url = getUrlViewProduct(this.staticStore.url.viewProduct, this.orderProduct.product.id);
-      window.open(url, '_blank').focus();
+      const url = getUrlViewProduct(
+        this.staticStore.url.viewProduct,
+        this.orderProduct.product.id
+      );
+      window.open(url, "_blank").focus();
     },
     remove(event) {
       event.preventDefault();
 
-      this.removeOrderProduct(this.orderProduct.id)
+      this.removeOrderProduct(this.orderProduct.id);
     },
   },
 };

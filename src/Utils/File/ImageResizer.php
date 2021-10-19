@@ -17,12 +17,6 @@ class ImageResizer
         $this->imagine = new Imagine();
     }
 
-    /**
-     * @param string $originalFileFolder
-     * @param string $originalFilename
-     * @param array $targetParams
-     * @return string|null
-     */
     public function resizeImageAndSave(string $originalFileFolder, string $originalFilename, array $targetParams): ?string
     {
         $originalFilePath = $originalFileFolder.'/'.$originalFilename;

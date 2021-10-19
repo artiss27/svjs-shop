@@ -33,8 +33,8 @@ class SetCartSessionIdSubscriber implements EventSubscriberInterface
     {
         return [
             KernelEvents::VIEW => [
-                'setSessionId', EventPriorities::PRE_WRITE
-            ]
+                'setSessionId', EventPriorities::PRE_WRITE,
+            ],
         ];
     }
 }

@@ -6,7 +6,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInter
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use App\Entity\Cart;
-use App\Entity\Product;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,7 +30,7 @@ class FilterCartQueryExtension implements QueryCollectionExtensionInterface, Que
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
         $request = Request::createFromGlobals();
-        $phpSessId = $request->cookies->get("PHPSESSID");
+        $phpSessId = $request->cookies->get('PHPSESSID');
 
         $queryBuilder->andWhere(
             sprintf("%s.sessionId = '%s'", $rootAlias, $phpSessId)

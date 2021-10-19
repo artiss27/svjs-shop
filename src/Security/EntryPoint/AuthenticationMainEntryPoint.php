@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Security\EntryPoint;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;

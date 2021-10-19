@@ -3,7 +3,6 @@
 namespace App\Form\Admin;
 
 use App\Entity\Category;
-use App\Entity\Product;
 use App\Form\DTO\EditProductModel;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -23,9 +22,9 @@ class EditProductFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label'       => 'Title',
-                'required'    => true,
-                'attr'        => [
+                'label' => 'Title',
+                'required' => true,
+                'attr' => [
                     'class' => 'form-control',
                 ],
                 'constraints' => [
@@ -33,58 +32,58 @@ class EditProductFormType extends AbstractType
                 ],
             ])
             ->add('price', NumberType::class, [
-                'label'    => 'Price',
+                'label' => 'Price',
                 'required' => true,
-                'scale'    => 2,
-                'html5'    => true,
-                'attr'     => [
+                'scale' => 2,
+                'html5' => true,
+                'attr' => [
                     'class' => 'form-control',
-                    'min'   => 0,
-                    'step'  => '0.01',
+                    'min' => 0,
+                    'step' => '0.01',
                 ],
             ])
             ->add('quantity', IntegerType::class, [
-                'label'    => 'Quantity',
+                'label' => 'Quantity',
                 'required' => true,
-                'attr'     => [
+                'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('description', TextareaType::class, [
-                'label'    => 'Description',
+                'label' => 'Description',
                 'required' => true,
-                'attr'     => [
+                'attr' => [
                     'class' => 'form-control',
                     'style' => 'overflow: hidden;',
                 ],
             ])
             ->add('newImage', FileType::class, [
-                'label'    => 'Choose new image',
+                'label' => 'Choose new image',
                 'required' => false,
-                'mapped'   => true,
-                'attr'     => [
+                'mapped' => true,
+                'attr' => [
                     'class' => 'form-control-file',
                 ],
             ])
             ->add('category', EntityType::class, [
-                'label'        => 'Category',
-                'required'     => true,
-                'class'        => Category::class,
+                'label' => 'Category',
+                'required' => true,
+                'class' => Category::class,
                 'choice_label' => 'title',
-                'attr'         => [
+                'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('isPublished', CheckboxType::class, [
-                'label'      => 'Is published',
-                'required'   => false,
-                'attr'       => ['class' => 'form-check-input'],
+                'label' => 'Is published',
+                'required' => false,
+                'attr' => ['class' => 'form-check-input'],
                 'label_attr' => ['class' => 'form-check-label'],
             ])
             ->add('isDeleted', CheckboxType::class, [
-                'label'      => 'Is deleted',
-                'required'   => false,
-                'attr'       => ['class' => 'form-check-input'],
+                'label' => 'Is deleted',
+                'required' => false,
+                'attr' => ['class' => 'form-check-input'],
                 'label_attr' => ['class' => 'form-check-label'],
             ]);
     }

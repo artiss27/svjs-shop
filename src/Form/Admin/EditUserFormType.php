@@ -21,16 +21,16 @@ class EditUserFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('plainPassword', TextType::class, [
                 'label' => 'New password',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Roles',
@@ -38,46 +38,46 @@ class EditUserFormType extends AbstractType
                 'choices' => array_flip(UserStaticStorage::getUserRolesChoices()),
                 'multiple' => true,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('fullName', TextType::class, [
                 'label' => 'Full name',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('phone', TextType::class, [
                 'label' => 'Phone',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('address', TextType::class, [
                 'label' => 'Address',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('zipcode', TextType::class, [
                 'label' => 'Zip code',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
             ])
             ->add('isDeleted', CheckboxType::class, [
                 'label' => 'Is deleted',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-check-input'
+                    'class' => 'form-check-input',
                 ],
                 'label_attr' => [
-                    'class' => 'form-check-label'
-                ]
+                    'class' => 'form-check-label',
+                ],
             ])
         ;
     }

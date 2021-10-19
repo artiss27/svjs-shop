@@ -30,7 +30,8 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * TODO: after register user lost his cart
+     * TODO: after register user lost his cart.
+     *
      * @Route("/register", name="app_register")
      */
     public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, MessageBusInterface $messageBus, EntityManagerInterface $entityManager): Response

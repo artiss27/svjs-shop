@@ -3,7 +3,6 @@
 namespace App\Utils\File;
 
 use App\Utils\Filesystem\FilesystemWorker;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -32,10 +31,6 @@ class FileSaver
         $this->filesystemWorker = $filesystemWorker;
     }
 
-    /**
-     * @param UploadedFile $uploadedFile
-     * @return string|null
-     */
     public function saveUploadedFileIntoTemp(UploadedFile $uploadedFile): ?string
     {
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);

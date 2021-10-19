@@ -8,10 +8,6 @@ use League\OAuth2\Client\Provider\GoogleUser;
 
 class UserFactory
 {
-    /**
-     * @param FacebookUser $facebookUser
-     * @return User
-     */
     public static function createUserFromFacebookUser(FacebookUser $facebookUser): User
     {
         $user = new User();
@@ -23,10 +19,6 @@ class UserFactory
         return $user;
     }
 
-    /**
-     * @param GoogleUser $googleUser
-     * @return User
-     */
     public static function createUserFromGoogleUser(GoogleUser $googleUser): User
     {
         $user = new User();

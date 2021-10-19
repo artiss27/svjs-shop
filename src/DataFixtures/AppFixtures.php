@@ -22,13 +22,12 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * @param ObjectManager $manager
      * @throws \Exception
      */
     public function load(ObjectManager $manager): void
     {
         /**
-         * User
+         * User.
          */
         $users = [UserFixtures::USER, UserFixtures::USER_ADMIN, UserFixtures::USER_SUPER_ADMIN];
         foreach ($users as $k => $v) {
@@ -37,28 +36,28 @@ class AppFixtures extends Fixture
             $entity->setRoles($v['roles']);
             $entity->setPassword($this->passwordEncoder->hashPassword($entity, $v['password']));
             $entity->setIsVerified(true);
-            $entity->setFullName('test user ' . $k);
+            $entity->setFullName('test user '.$k);
             $entity->setPhone('34234234345');
             $manager->persist($entity);
         }
         $manager->flush();
 
-        /**
+        /*
          * Category
          */
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $entity = new Category();
-            $entity->setTitle('Category test ' . $i);
+            $entity->setTitle('Category test '.$i);
             $manager->persist($entity);
         }
         $manager->flush();
 
-        /**
+        /*
          * Product
          */
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $entity = new Product();
-            $entity->setTitle('Product test ' . $i);
+            $entity->setTitle('Product test '.$i);
             $entity->setPrice(random_int(0, 100) + (random_int(0, 10) / 10));
             $entity->setQuantity(random_int(1, 100));
             $entity->setCategory($manager->getRepository(Category::class)->findOneBy(['id' => random_int(1, 5)]));
@@ -67,10 +66,10 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
 
-        /**
+        /*
          * Order
          */
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $entity = new Order();
             $entity->setOwner($manager->getRepository(User::class)->findOneBy(['id' => random_int(1, 3)]));
             $entity->setStatus(0);
@@ -79,10 +78,10 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
 
-        /**
+        /*
          * OrderProduct
          */
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $entity = new OrderProduct();
             $entity->setAppOrder($manager->getRepository(Order::class)->findOneBy(['id' => random_int(1, 5)]));
             $entity->setProduct($manager->getRepository(Product::class)->findOneBy(['id' => random_int(1, 5)]));

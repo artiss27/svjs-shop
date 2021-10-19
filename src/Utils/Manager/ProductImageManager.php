@@ -34,17 +34,12 @@ class ProductImageManager extends AbstractBaseManager
         $this->imageResizer = $imageResizer;
     }
 
-    /**
-     * @return ObjectRepository
-     */
     public function getRepository(): ObjectRepository
     {
         return $this->entityManager->getRepository(ProductImage::class);
     }
 
     /**
-     * @param string $productDir
-     * @param string|null $tempImageFilename
      * @return ProductImage|null
      */
     public function saveImageForProduct(string $productDir, string $tempImageFilename = null)
@@ -60,7 +55,7 @@ class ProductImageManager extends AbstractBaseManager
             'width' => 60,
             'height' => null,
             'newFolder' => $productDir,
-            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'small')
+            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'small'),
         ];
         $imageSmall = $this->imageResizer->resizeImageAndSave($this->uploadsTempDir, $tempImageFilename, $imageSmallParams);
 
@@ -68,7 +63,7 @@ class ProductImageManager extends AbstractBaseManager
             'width' => 430,
             'height' => null,
             'newFolder' => $productDir,
-            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'middle')
+            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'middle'),
         ];
         $imageMiddle = $this->imageResizer->resizeImageAndSave($this->uploadsTempDir, $tempImageFilename, $imageMiddleParams);
 
@@ -76,7 +71,7 @@ class ProductImageManager extends AbstractBaseManager
             'width' => 800,
             'height' => null,
             'newFolder' => $productDir,
-            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'big')
+            'newFilename' => sprintf('%s_%s.jpg', $filenameId, 'big'),
         ];
         $imageBig = $this->imageResizer->resizeImageAndSave($this->uploadsTempDir, $tempImageFilename, $imageBigParams);
 
@@ -92,10 +87,6 @@ class ProductImageManager extends AbstractBaseManager
         return $productImage;
     }
 
-    /**
-     * @param ProductImage $productImage
-     * @param string $productDir
-     */
     public function removeImageFromProduct(ProductImage $productImage, string $productDir)
     {
         $smallFilePath = $productDir.'/'.$productImage->getFilenameSmall();

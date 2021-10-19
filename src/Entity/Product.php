@@ -143,10 +143,10 @@ class Product
 
     public function __construct()
     {
-        $this->uuid          = Uuid::v4();
-        $this->createdAt     = new \DateTimeImmutable();
-        $this->isPublished   = false;
-        $this->isDeleted     = false;
+        $this->uuid = Uuid::v4();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->isPublished = false;
+        $this->isDeleted = false;
         $this->productImages = new ArrayCollection();
         $this->cartProducts = new ArrayCollection();
         $this->orderProducts = new ArrayCollection();

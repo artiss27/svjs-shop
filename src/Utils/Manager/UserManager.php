@@ -21,18 +21,11 @@ class UserManager extends AbstractBaseManager
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    /**
-     * @return ObjectRepository
-     */
     public function getRepository(): ObjectRepository
     {
         return $this->entityManager->getRepository(User::class);
     }
 
-    /**
-     * @param User $user
-     * @param string $plainPassword
-     */
     public function encodePassword(User $user, string $plainPassword)
     {
         $newPassword = trim($plainPassword);

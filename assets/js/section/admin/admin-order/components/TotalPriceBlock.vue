@@ -1,8 +1,6 @@
 <template>
   <div class="row mb-1">
-    <div class="col-md-2 text-right font-weight-bold">
-      Total price:
-    </div>
+    <div class="col-md-2 text-right font-weight-bold">Total price:</div>
     <div class="col-md-10">
       <span class="font-weight-bold">${{ totalPrice }}</span>
     </div>
@@ -10,16 +8,17 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-  name:     'TotalPriceBlock',
+  name: "TotalPriceBlock",
   computed: {
-    ...mapState('products', ['orderProducts']),
+    ...mapState("products", ["orderProducts"]),
     totalPrice() {
       let totalPrice = 0;
-      this.orderProducts.forEach(orderProduct => {
-        totalPrice += parseFloat(orderProduct.pricePerOne) * orderProduct.quantity;
+      this.orderProducts.forEach((orderProduct) => {
+        totalPrice +=
+          parseFloat(orderProduct.pricePerOne) * orderProduct.quantity;
       });
       return parseFloat(totalPrice.toFixed(2));
     },
@@ -27,6 +26,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

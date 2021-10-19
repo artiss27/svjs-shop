@@ -90,10 +90,10 @@ class Order
      */
     public function __construct()
     {
-        $this->createdAt     = new \DateTimeImmutable();
-        $this->updatedAt     = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->orderProducts = new ArrayCollection();
-        $this->isDeleted     = false;
+        $this->isDeleted = false;
     }
 
     public function getId(): ?int

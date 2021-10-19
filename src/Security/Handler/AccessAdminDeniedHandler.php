@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Security\Handler;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;

@@ -6,8 +6,8 @@ use App\Event\UserLoggedInViaSocialNetworkEvent;
 use App\Utils\Factory\UserFactory;
 use App\Utils\Generator\PasswordGenerator;
 use App\Utils\Manager\UserManager;
-use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Provider\GoogleUser;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -57,20 +57,12 @@ class GoogleAuthenticator extends OAuth2Authenticator
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param Request $request
-     * @return bool|null
-     */
     public function supports(Request $request): ?bool
     {
         // continue ONLY if the current ROUTE matches the check ROUTE
         return 'connect_google_check' === $request->attributes->get('_route');
     }
 
-    /**
-     * @param Request $request
-     * @return PassportInterface
-     */
     public function authenticate(Request $request): PassportInterface
     {
         $client = $this->clientRegistry->getClient('google_main');
@@ -116,12 +108,6 @@ class GoogleAuthenticator extends OAuth2Authenticator
         );
     }
 
-    /**
-     * @param Request $request
-     * @param TokenInterface $token
-     * @param string $firewallName
-     * @return Response|null
-     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // change "app_homepage" to some route in your app
@@ -133,11 +119,6 @@ class GoogleAuthenticator extends OAuth2Authenticator
         //return null;
     }
 
-    /**
-     * @param Request $request
-     * @param AuthenticationException $exception
-     * @return Response|null
-     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         $message = strtr($exception->getMessageKey(), $exception->getMessageData());

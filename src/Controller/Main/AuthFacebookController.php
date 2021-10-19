@@ -24,6 +24,5 @@ class AuthFacebookController extends AbstractController
      */
     public function connectCheckAction()
     {
-        //
     }
 }

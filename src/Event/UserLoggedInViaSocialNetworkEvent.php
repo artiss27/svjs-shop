@@ -22,9 +22,6 @@ class UserLoggedInViaSocialNetworkEvent extends Event
         $this->plainPassword = $plainPassword;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;

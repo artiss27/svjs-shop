@@ -20,7 +20,7 @@ class OrderStaticStorage
             self::ORDER_STATUS_PROCESSED => 'Processed',
             self::ORDER_STATUS_COMPLECTED => 'Complected',
             self::ORDER_STATUS_DELIVERED => 'Delivered',
-            self::ORDER_STATUS_DENIED => 'Denied'
+            self::ORDER_STATUS_DENIED => 'Denied',
         ];
     }
 }

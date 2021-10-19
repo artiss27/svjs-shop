@@ -14,12 +14,12 @@ class EditCategoryModel
 
     /**
      * @Assert\NotBlank(message="Please enter a title")
+     *
      * @var string
      */
     public $title;
 
     /**
-     * @param Category|null $category
      * @return static
      */
     public static function makeFromCategory(?Category $category): self

@@ -28,10 +28,7 @@ class ProductFormHandler
     }
 
     /**
-     * @param EditProductModel $editProductModel
      * @param Form $form
-     *
-     * @return Product|null
      */
     public function processEditForm(EditProductModel $editProductModel, FormInterface $form): ?Product
     {
@@ -56,7 +53,6 @@ class ProductFormHandler
         $tempImageFilename = $newImageFile
             ? $this->fileSaver->saveUploadedFileIntoTemp($newImageFile)
             : null;
-
 
         $this->productManager->updateProductImages($product, $tempImageFilename);
 

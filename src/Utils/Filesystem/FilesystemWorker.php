@@ -16,9 +16,6 @@ class FilesystemWorker
         $this->filesystem = $filesystem;
     }
 
-    /**
-     * @param string $folder
-     */
     public function createFolderIfItNotExist(string $folder)
     {
         if (!$this->filesystem->exists($folder)) {
@@ -26,9 +23,6 @@ class FilesystemWorker
         }
     }
 
-    /**
-     * @param string $item
-     */
     public function remove(string $item)
     {
         if ($this->filesystem->exists($item)) {

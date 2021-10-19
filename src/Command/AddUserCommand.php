@@ -9,9 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
@@ -65,7 +63,7 @@ class AddUserCommand extends Command
 
         $io->title('Add User Command Wizard');
         $io->text([
-            'Please, enter some information'
+            'Please, enter some information',
         ]);
 
         if (!$email) {
@@ -118,12 +116,6 @@ class AddUserCommand extends Command
         return Command::SUCCESS;
     }
 
-    /**
-     * @param string $email
-     * @param string $password
-     * @param string $role
-     * @return User
-     */
     private function createUser(string $email, string $password, string $role): User
     {
         $existingUser = $this->userRepository->findOneBy(['email' => $email]);
