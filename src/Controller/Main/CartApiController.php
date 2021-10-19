@@ -7,6 +7,7 @@ use App\Entity\CartProduct;
 use App\Repository\CartProductRepository;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class CartApiController extends AbstractController
     /**
      * @Route("/cart", methods="POST", name="cart_save")
      */
-    public function saveCart(Request $request, CartRepository $cartRepository, CartProductRepository $cartProductRepository, ProductRepository $productRepository): Response
+    public function saveCart(Request $request, CartRepository $cartRepository, CartProductRepository $cartProductRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
     {
         $productId = $request->request->get('productId');
         $phpSessionId = $request->cookies->get('PHPSESSID');
@@ -47,7 +48,6 @@ class CartApiController extends AbstractController
             $cartProduct->setQuantity($quantity);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($cart);
         $entityManager->persist($cartProduct);
         $entityManager->flush();

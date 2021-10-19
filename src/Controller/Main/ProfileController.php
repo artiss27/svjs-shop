@@ -3,6 +3,7 @@
 namespace App\Controller\Main;
 
 use App\Form\Main\ProfileEditFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,16 +22,13 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile/edit", name="main_profile_edit")
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(ProfileEditFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 

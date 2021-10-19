@@ -7,6 +7,7 @@ use App\Form\Main\RegistrationFormType;
 use App\Messenger\Message\Event\UserRegisteredEvent;
 use App\Repository\UserRepository;
 use App\Security\Verifier\EmailVerifier;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +33,7 @@ class RegistrationController extends AbstractController
      * TODO: after register user lost his cart
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, MessageBusInterface $messageBus): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, MessageBusInterface $messageBus, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('main_profile_index');
@@ -51,7 +52,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
