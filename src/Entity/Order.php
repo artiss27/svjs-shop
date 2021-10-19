@@ -82,12 +82,6 @@ class Order
      */
     private $orderProducts;
 
-    /**
-     * @param $createdAt
-     * @param $status
-     * @param $updatedAt
-     * @param $isDeleted
-     */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
